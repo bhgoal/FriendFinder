@@ -24,31 +24,42 @@ $(".noUi-value[data-value='3']").text("Neutral");
 $(".noUi-value[data-value='4']").text("Agree");
 $(".noUi-value[data-value='5']").text("Strongly Agree");
 
-console.log(slider1.noUiSlider.get());
 
+window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+		form.classList.add('was-validated');
+        if (form.checkValidity() === false) {
+			event.preventDefault();
+			event.stopPropagation();
+			window.scrollTo(0, 0);
+        } else {
+			event.preventDefault();
+			var newUser = {
+				name: $("#userNameForm").val().trim(),
+				img: $("#userImgForm").val().trim(),
+				scores: []
+			};
+			
+			for  (i = 0; i < 10; i++) {
+				newUser.scores.push(parseInt(slider[i].noUiSlider.get()));
+			}
+			console.log(newUser.scores);
+			
 
-$("#submit-btn").on("click", function(event) {
-	event.preventDefault();
-
-	var newUser = {
-		name: $("#userNameForm").val().trim(),
-		img: $("#userImgForm").val().trim(),
-		scores: []
-	};
-
-	for  (i = 0; i < 10; i++) {
-		newUser.scores.push(parseInt(slider[i].noUiSlider.get()));
-	}
-	console.log(newUser.scores);
-
-// Question: What does this code do??
-	$.post("/api/friends", newUser)
-		.then(function(data) {
-			console.log(data);
-			runCompatibility(newUser);
-		});
-
-});
+			$.post("/api/friends", newUser)
+				.then(function(data) {
+					console.log(data);
+					runCompatibility(newUser);
+				});
+		}
+      }, false);
+    });
+  }, false);
+  
 
 function runCompatibility(newUser) {
 
@@ -92,8 +103,12 @@ function runCompatibility(newUser) {
 			}
 		}
 		console.log("Most compatible: " + mostComp.name);
-		$('#exampleModal').modal();
-		//displayResult(mostComp);
+		$('#exampleModal').modal({
+			backdrop: "static",
+			keyboard: false
+		});
+		$("#resultName").text(mostComp.name);
+		$("#resultImg").attr("src", mostComp.img);
 	});
 }
 

@@ -17,77 +17,79 @@
 
 <body>
     <div class="container">
-        <form>
-            <div class="form-group">
+        <form class="needs-validation" novalidate>
+            <div class="form-group col-lg-8">
                 <label for="userNameForm">Name:</label>
-                <input type="text" class="form-control" id="userNameForm">
+                <input type="text" class="form-control" id="userNameForm" required>
+                <div class="invalid-feedback">Please enter your name.</div>
             </div>
-            <div class="form-group">
+            <div class="form-group col-lg-8">
                 <label for="userImgForm">Enter URL of a photo of yourself:</label>
-                <input type="text" class="form-control" id="userImgForm">
+                <input type="text" class="form-control" id="userImgForm" required>
+                <div class="invalid-feedback">Please enter an image URL.</div>
+            </div>
+
+            <ul id="questionsContainer">
+
+                <li class="singleQuestion">
+                    <div class="h2">1. Sample question one here:</div>
+                    <div id="slider0" class="slider"></div>
+                </li>
+                <li class="singleQuestion">
+                    <div class="h2">2. Sample question two here:</div>
+                    <div id="slider1" class="slider"></div>
+                </li>
+                <li class="singleQuestion">
+                    <div class="h2">3. Sample question three here:</div>
+                    <div id="slider2" class="slider"></div>
+                </li>
+                <li class="singleQuestion">
+                    <div class="h2">4. Sample question four here:</div>
+                    <div id="slider3" class="slider"></div>
+                </li>
+                <li class="singleQuestion">
+                    <div class="h2">5. Sample question five here:</div>
+                    <div id="slider4" class="slider"></div>
+                </li>
+                <li class="singleQuestion">
+                    <div class="h2">6. Sample question six here:</div>
+                    <div id="slider5" class="slider"></div>
+                </li>
+                <li class="singleQuestion">
+                    <div class="h2">7. Sample question seven here:</div>
+                    <div id="slider6" class="slider"></div>
+                </li>
+                <li class="singleQuestion">
+                    <div class="h2">8. Sample question eight here:</div>
+                    <div id="slider7" class="slider"></div>
+                </li>
+                <li class="singleQuestion">
+                    <div class="h2">9. Sample question nine here:</div>
+                    <div id="slider8" class="slider"></div>
+                </li>
+                <li class="singleQuestion">
+                    <div class="h2">10. Sample question ten here:</div>
+                    <div id="slider9" class="slider"></div>
+                </li>
+            </ul>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg" id="submit-btn"><span class="fa fa-fire" ></span> Submit</button>
             </div>
         </form>
-        <ul id="questionsContainer">
-            <li class="singleQuestion">
-                <div class="h2">1. Sample question one here:</div>
-                <div id="slider0" class="slider"></div>
-            </li>
-            <li class="singleQuestion">
-                <div class="h2">2. Sample question one here:</div>
-                <div id="slider1" class="slider"></div>
-            </li>
-            <li class="singleQuestion">
-                <div class="h2">3. Sample question one here:</div>
-                <div id="slider2" class="slider"></div>
-            </li>
-            <li class="singleQuestion">
-                <div class="h2">4. Sample question one here:</div>
-                <div id="slider3" class="slider"></div>
-            </li>
-            <li class="singleQuestion">
-                <div class="h2">5. Sample question one here:</div>
-                <div id="slider4" class="slider"></div>
-            </li>
-            <li class="singleQuestion">
-                <div class="h2">6. Sample question one here:</div>
-                <div id="slider5" class="slider"></div>
-            </li>
-            <li class="singleQuestion">
-                <div class="h2">7. Sample question one here:</div>
-                <div id="slider6" class="slider"></div>
-            </li>
-            <li class="singleQuestion">
-                <div class="h2">8. Sample question one here:</div>
-                <div id="slider7" class="slider"></div>
-            </li>
-            <li class="singleQuestion">
-                <div class="h2">9. Sample question one here:</div>
-                <div id="slider8" class="slider"></div>
-            </li>
-            <li class="singleQuestion">
-                <div class="h2">10. Sample question one here:</div>
-                <div id="slider9" class="slider"></div>
-            </li>
-        </ul>
-        <div class="text-right">
-            <button type="submit" class="btn btn-primary btn-md" id="submit-btn"><span class="fa fa-fire" ></span> Submit</button>
-        </div>
       
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel">You are most compatible with:</h5>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <h3 id="resultName"></h3>
+                        <img id="resultImg" src="" style="width: 90%">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="returnHomeBtn">Return to home</button>
+                        <a class="btn btn-primary" href="/home" role="button">Return to home</a>
                     </div>
                 </div>
             </div>
